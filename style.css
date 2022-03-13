@@ -47,4 +47,17 @@ h1{
 div{
     background: yellowgreen;
 }
+#player2score{
+	background-color: aqua;
+}
+#player1score{
+	background-color: aqua;
+}
+#player2name{
+	color: aqua;
+}
+#player1name{
+	color: aqua;
+}
+
 
