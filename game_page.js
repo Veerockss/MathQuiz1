@@ -14,27 +14,48 @@ document.getElementById("qestionturn").innerHTML="Question Turn: "+player1_name;
 document.getElementById("answerturn").innerHTML="Answer Turn: "+player2_name;
 
 function send(){
-    getword=document.getElementById("word").value;
-    word=getword.toLowerCase();
+        number1 = document.getElementById("word").value;
+        number2 = document.getElementById("word2").value;
+        actual_answer = parseInt(number1) * parseInt(number2);
+        question_word = "<h5>" + number1 + " X " + number2 + "</h5>";
+        input_box = "<br>Answer : <input type='text' id='input_check_box'>";
+        check_button = "<br><br><button class='btn btn-info' onclick='check()'>Check</button>";
+        row = question_word + input_box + check_button;
+        document.getElementById("output").innerHTML = row;
+        document.getElementById("word").value = "";
+        document.getElementById("word2").value = "";
+    }
+    questionturn="player1";
+    answerturn="player2";
+    function check(){
+        getAnswer=document.getElementById("input_check_box").value;
+        answer=getAnswer.toLowerCase();
+        if(answer==word){
+            if(answerturn=="player1"){
+                player_1_score=player_1_score+1;
+                document.getElementById("player1score").innerHTML=player_1_score;
+            }
+            else{
+                player_2_score=player_2_score+1;
+                document.getElementById("player2score").innerHTML=player_2_score;
+            }
+        }
+        if(questionturn=="player1"){
+            questionturn="player2";
+            document.getElementById("qestionturn").innerHTML="Question turn: "+player2_name;
+        }
+        else{
+            questionturn="player1";
+            document.getElementById("qestionturn").innerHTML="Question turn: "+player1_name;
+        }
+        if(answerturn=="player1"){
+            answerturn="player2";
+            document.getElementById("answerturn").innerHTML="Answer turn: "+player2_name;
+        }
+        else{
+            answerturn="player1";
+            document.getElementById("answerturn").innerHTML="Answer turn: "+player1_name;
+        }
+        document.getElementById("output").innerHTML="";
+    }
     
-    charAt1=word.charAt(1);
-    console.log(charAt1);
-    lengthdivide2=Math.floor(word.length/2);
-    charAt2=word.charAt(lengthdivide2);
-    console.log(charAt2);
-    lastchar=word.length-1;
-    charAt3=word.charAt(lastchar);
-    console.log(charAt3);
-
-    removechar1=word.replace(charAt1,"_");
-    removechar2=removechar1.replace(charAt2,"_");
-    removechar3=removechar2.replace(charAt3,"_");
-    console.log(removechar3);
-
-    questionword="<h4 id='word_display'>Q. "+removechar3+"</h4>";
-    textbox="<br>Answer: <input type='text' id='input_check_box'>";
-    button="<br><br><button class='btn btn-info' onclick='check();'> Check </button>";
-    row=questionword+textbox+button;
-    document.getElementById("output").innerHTML=row;
-    document.getElementById("word").innerHTML="";
-}
